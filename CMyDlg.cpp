@@ -41,12 +41,12 @@ END_MESSAGE_MAP()
 
 // CMyDlg 메시지 처리기
 
-void CMyDlg::OnLbnSelchangeListLoans()
+void CMyDlg::OnLbnSelchangeListLoans() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMyDlg::OnEnChangeEditUsername()
+void CMyDlg::OnEnChangeEditUsername() 
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
 	// CDialogEx::OnInitDialog() 함수를 재지정 
@@ -56,17 +56,17 @@ void CMyDlg::OnEnChangeEditUsername()
 	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMyDlg::OnBnClickedButtonExtend()
+void CMyDlg::OnBnClickedButtonExtend() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMyDlg::OnBnClickedButtonReturn()
+void CMyDlg::OnBnClickedButtonReturn() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMyDlg::OnBnClickedButtonDeleteme()
+void CMyDlg::OnBnClickedButtonDeleteme() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }

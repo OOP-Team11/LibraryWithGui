@@ -1,4 +1,4 @@
-﻿// CJoinFailDlg.cpp: 구현 파일
+﻿// CJoinFailDlg.cpp: 구현 파일 
 //
 
 #include "pch.h"

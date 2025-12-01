@@ -40,7 +40,7 @@ END_MESSAGE_MAP()
 
 // CLoginDlg 메시지 처리기
 
-void CLoginDlg::OnEnChangeEditNickname()
+void CLoginDlg::OnEnChangeEditNickname() 
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
 	// CDialogEx::OnInitDialog() 함수를 재지정 
@@ -50,12 +50,12 @@ void CLoginDlg::OnEnChangeEditNickname()
 	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CLoginDlg::OnBnClickedButtonJoin()
+void CLoginDlg::OnBnClickedButtonJoin() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CLoginDlg::OnEnChangeEditPassword()
+void CLoginDlg::OnEnChangeEditPassword() 
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
 	// CDialogEx::OnInitDialog() 함수를 재지정 
@@ -65,7 +65,7 @@ void CLoginDlg::OnEnChangeEditPassword()
 	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CLoginDlg::OnBnClickedButtonLogin()
+void CLoginDlg::OnBnClickedButtonLogin() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 

@@ -42,7 +42,7 @@ END_MESSAGE_MAP()
 
 // CManagerDlg 메시지 처리기
 
-void CManagerDlg::OnEnChangeEdit1()
+void CManagerDlg::OnEnChangeEdit1() 
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
 	// CDialogEx::OnInitDialog() 함수를 재지정 
@@ -52,7 +52,7 @@ void CManagerDlg::OnEnChangeEdit1()
 	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CManagerDlg::OnEnChangeEdit2()
+void CManagerDlg::OnEnChangeEdit2() 
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
 	// CDialogEx::OnInitDialog() 함수를 재지정 
@@ -62,17 +62,17 @@ void CManagerDlg::OnEnChangeEdit2()
 	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CManagerDlg::OnCbnSelchangeComboCategory()
+void CManagerDlg::OnCbnSelchangeComboCategory() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CManagerDlg::OnBnClickedButtonInsertbook()
+void CManagerDlg::OnBnClickedButtonInsertbook() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CManagerDlg::OnBnClickedButtonDeletebook()
+void CManagerDlg::OnBnClickedButtonDeletebook() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
