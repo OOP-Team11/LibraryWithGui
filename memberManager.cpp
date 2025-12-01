@@ -36,7 +36,7 @@ MemberManager::MemberManager() {
 // ----------------------------------------------
 MemberManager::MemberManager(string filename) {
 
-	int id;
+	int id = 0;
 	ifstream in(filename);
 	if (!in.is_open()) {
 		cerr << "파일을 열 수 없습니다: " << filename << endl;
