@@ -1,0 +1,4 @@
+﻿0,The Great Gatsby,F. Scott Fitzgerald,800,0
+1,A Brief History of Time,Stephen Hawking,400,1
+2,Sapiens,Yuval Noah Harari,900,0
+3,Demian,Hermann Hesse,800,0
