@@ -30,8 +30,8 @@ void MainManager::Exit() {
 void MainManager::setMembers() { 
 }
 /* 회원 가입 */
-void MainManager::join(string name, string password) { 
-	members.join(name, password);
+bool MainManager::join(string name, string password) { 
+	return members.join(name, password);
 }
 /* 로그인 */
 bool MainManager::login(string name, string password) {

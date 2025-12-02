@@ -29,7 +29,7 @@ public:
 	void Exit(); // 창 끄기전에 파일 저장 및 종료
 	// 회원 관련
 	void setMembers();
-	void join(string name, string password);
+	bool join(string name, string password);
 	bool login(string name, string password); // 여기서 userId <- 반환된 id 연결시키기
 	bool deleteMe();
 	int getUserId();
