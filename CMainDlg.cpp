@@ -212,6 +212,14 @@ void CMainDlg::OnBnClickedButtonManage()
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	// Manager 페이지 생성
 	// 실제로는 권한 검사도 해야함.
+    if (m_pMainManager == nullptr) return;
+
+    // 관리자 권한 확인
+    if (m_pMainManager->getUserRole()!=Role::Admin) {
+        AfxMessageBox(L"관리자 권한이 없습니다. 접근할 수 없습니다.");
+        return;   // 관리자 아니면 페이지 안 열림
+    }
+
 	CManagerDlg managerDlg;
 	managerDlg.setManager(m_pMainManager);
 	INT_PTR managerResult = managerDlg.DoModal();
@@ -227,45 +235,49 @@ void CMainDlg::OnBnClickedButtonDeletebook()
 {
     if (m_pMainManager == nullptr) return;
 
-    // 1. 리스트박스 제어권 가져오기
+    // 관리자 권한 확인
+    if (m_pMainManager->getUserRole() != Role::Admin) {
+        AfxMessageBox(L"관리자 권한이 없습니다. 접근할 수 없습니다.");
+        return;   // 관리자 아니면 페이지 안 열림
+    }
+
+    // 리스트박스 제어권 가져오기
     CListBox* pList = (CListBox*)GetDlgItem(IDC_LIST_BOOKS);
     if (pList == nullptr) return;
 
-    // 2. 현재 선택된 항목의 인덱스 확인
+    // 현재 선택된 항목의 인덱스 확인
     int nSel = pList->GetCurSel();
     if (nSel == LB_ERR) {
         AfxMessageBox(L"삭제할 도서를 목록에서 선택해주세요.");
         return;
     }
 
-    // 3. 선택된 항목의 텍스트 가져오기
+    // 선택된 항목의 텍스트 가져오기
     CString strItem;
     pList->GetText(nSel, strItem);
 
-    // 4. 문자열 파싱하여 Book ID 추출
-    // 리스트 형식 예: "[ID:10] 제목 / 작가..."
+    // 문자열 파싱하여 Book ID 추출
     int bookId = -1;
 
-    // swscanf_s를 사용하여 "[ID:%d]" 패턴에 맞는 숫자를 추출
     // 성공하면 1을 반환함
     if (swscanf_s(strItem, L"[ID:%d]", &bookId) != 1) {
         AfxMessageBox(L"도서 정보를 읽을 수 없습니다. (ID 파싱 실패)");
         return;
     }
 
-    // 5. 삭제 실행 (예외 처리 포함)
+    // 삭제 실행, 예외 처리
     try {
         int userId = m_pMainManager->getUserId();
 
-        // 삭제 요청 (권한이 없거나 ID가 없으면 예외 발생)
+        // 삭제 요청 (ID가 없으면 예외 발생)
         m_pMainManager->deleteBook(bookId, userId);
 
-        // 6. 성공 시 리스트박스에서도 해당 항목 즉시 삭제
+        // 성공 시 리스트박스에서도 해당 항목 즉시 삭제
         pList->DeleteString(nSel);
         AfxMessageBox(L"도서 삭제 완료!");
     }
     catch (const std::exception& e) {
-        // 관리자 권한이 없거나 에러 발생 시 메시지 출력
+        // 에러 발생 시 메시지 출력
         CString msg;
         msg.Format(L"삭제 실패: %S", e.what());
         AfxMessageBox(msg);

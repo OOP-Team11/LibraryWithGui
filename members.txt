@@ -6,4 +6,4 @@
 7,User,lee,abc,0
 8,User,park,hello,0
 9,User,serin,1234,0
-10,User,1234,1111,0
+10,Admin,admin,1234,0

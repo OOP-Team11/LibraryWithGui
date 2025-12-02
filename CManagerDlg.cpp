@@ -71,13 +71,6 @@ void CManagerDlg::OnBnClickedButtonInsertbook()
 {
     if (m_pMainManager == nullptr) return;
 
-    // 관리자 체크
-    if (m_pMainManager->getUserId() != 1234)
-    {
-        AfxMessageBox(L"관리자만 도서를 등록할 수 있습니다.");
-        return;
-    }
-
     // 입력값 가져오기
     CString cname, cwriter;
     GetDlgItemText(IDC_EDIT1, cname);   // 책 제목 입력 칸
