@@ -67,6 +67,11 @@ void CMyDlg::OnBnClickedButtonReturn()
 }
 
 void CMyDlg::OnBnClickedButtonDeleteme() 
-{
+{	
+	// 성공한 경우
+	if (this->m_pMainManager->deleteMe()) {
+		AfxMessageBox(L"탈퇴가 성공적으로 완료되었습니다.");
+	}
+	else AfxMessageBox(L"탈퇴에 실패하였습니다.");
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
