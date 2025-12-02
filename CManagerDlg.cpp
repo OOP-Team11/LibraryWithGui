@@ -67,12 +67,73 @@ void CManagerDlg::OnCbnSelchangeComboCategory()
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CManagerDlg::OnBnClickedButtonInsertbook() 
+void CManagerDlg::OnBnClickedButtonInsertbook()
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+    if (m_pMainManager == nullptr) return;
+
+    // 관리자 체크
+    if (m_pMainManager->getUserId() != 1234)
+    {
+        AfxMessageBox(L"관리자만 도서를 등록할 수 있습니다.");
+        return;
+    }
+
+    // 입력값 가져오기
+    CString cname, cwriter;
+    GetDlgItemText(IDC_EDIT1, cname);   // 책 제목 입력 칸
+    GetDlgItemText(IDC_EDIT2, cwriter); // 작가 입력 칸
+
+    // 변환
+    CT2A convName(cname);
+    CT2A convWriter(cwriter);
+    string name = string(convName);
+    string writer = string(convWriter);
+
+    // 카테고리
+    CComboBox* pCat = (CComboBox*)GetDlgItem(IDC_COMBO_CATEGORY);
+    int sel = pCat->GetCurSel();
+
+    BookCategory category;
+    switch (sel)
+    {
+    case 0: category = BookCategory::All; break;
+    case 1: category = BookCategory::General; break;
+    case 2: category = BookCategory::Philosophy; break;
+    case 3: category = BookCategory::Religion; break;
+    case 4: category = BookCategory::SocialSci; break;
+    case 5: category = BookCategory::NaturalSci; break;
+    case 6: category = BookCategory::Technology; break;
+    case 7: category = BookCategory::Arts; break;
+    case 8: category = BookCategory::Language; break;
+    case 9: category = BookCategory::Literature; break;
+    case 10: category = BookCategory::History; break;
+    default: category = BookCategory::General;
+    }
+
+    // MainManager → BookManager insert 호출
+    m_pMainManager->insertBook(name, writer, category);
+
+    AfxMessageBox(L"도서가 등록되었습니다.");
 }
 
-void CManagerDlg::OnBnClickedButtonDeletebook() 
+
+void CManagerDlg::OnBnClickedButtonDeletebook()
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+    if (m_pMainManager == nullptr) return;
+
+    
+    int bookId; //임시로 id 선언
+    int userId = m_pMainManager->getUserId();
+
+    try {
+        m_pMainManager->deleteBook(bookId,userId);
+        AfxMessageBox(L"도서 삭제 완료!");
+    }
+    catch (const std::exception& e) {
+        CString msg(e.what());
+        AfxMessageBox(msg); //userId가 관리자Id(1234)가 아니면 에러를 catch해서 에러메시지 그대로 띄우기
+    }
+
+    AfxMessageBox(L"도서 삭제 요청 완료");
 }
+
