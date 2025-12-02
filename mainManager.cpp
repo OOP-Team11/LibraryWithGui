@@ -25,25 +25,20 @@ void MainManager::Exit() {
 	(this->books).save(bookfile); 
 	(this->loans).save(loanfile); 
 }
-<<<<<<< HEAD
+
 // íšŒì› ê´€ë ¨
-=======
-// È¸¿ø °ü·Ã
-/* username, userrole ¼³Á¤ÇÏ´Â ¿ªÇÒ? login¿¡¼­ ÇÑ¹ø¿¡ ÇÏ¸é µÉµí */
->>>>>>> e6e231449a7f96bd81c1a847d3a627730a82d818
+
+// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+/* username, userrole ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½? loginï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½Éµï¿½ */
+
 void MainManager::setMembers() { 
 }
-/* È¸¿ø °¡ÀÔ */
+/* È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 void MainManager::join(string name, string password) { 
 	members.join(name, password);
 }
-/* ·Î±×ÀÎ */
+/* ï¿½Î±ï¿½ï¿½ï¿½ */
 bool MainManager::login(string name, string password) {
-
-<<<<<<< HEAD
-}	// ì—¬ê¸°ì„œ userId <- ë°˜í™˜ëœ id ì—°ê²°ì‹œí‚¤ê¸° 
-void MainManager::deleteMe() { 
-=======
 	const Member* currentUser = members.login(name, password);
 	if (currentUser == nullptr) return false;
 
@@ -51,13 +46,12 @@ void MainManager::deleteMe() {
 	(this->username) = (currentUser->getName());
 	(this->userrole) = (currentUser->getRole());
 	return true;
-}	// ¿©±â¼­ userId <- ¹ÝÈ¯µÈ id ¿¬°á½ÃÅ°±â 
-/* Å»Åð */
+}	// ì—¬ê¸°ì„œ userId <- ë°˜í™˜ëœ id ì—°ê²°ì‹œí‚¤ê¸° 
+
 bool MainManager::deleteMe() { 
 	return members.deleteMember(this->userId);
 }
 /* getters */
->>>>>>> e6e231449a7f96bd81c1a847d3a627730a82d818
 
 int MainManager::getUserId() {
 	return this->userId;

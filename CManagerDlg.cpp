@@ -36,7 +36,7 @@ BEGIN_MESSAGE_MAP(CManagerDlg, CDialogEx)
 	ON_EN_CHANGE(IDC_EDIT2, &CManagerDlg::OnEnChangeEdit2)
 	ON_CBN_SELCHANGE(IDC_COMBO_CATEGORY, &CManagerDlg::OnCbnSelchangeComboCategory)
 	ON_BN_CLICKED(IDC_BUTTON_INSERTBOOK, &CManagerDlg::OnBnClickedButtonInsertbook)
-	ON_BN_CLICKED(IDC_BUTTON_DELETEBOOK, &CManagerDlg::OnBnClickedButtonDeletebook)
+	//ON_BN_CLICKED(IDC_BUTTON_DELETEBOOK, &CManagerDlg::OnBnClickedButtonDeletebook)
 END_MESSAGE_MAP()
 
 
@@ -117,7 +117,7 @@ void CManagerDlg::OnBnClickedButtonInsertbook()
 }
 
 
-void CManagerDlg::OnBnClickedButtonDeletebook()
+/*void CManagerDlg::OnBnClickedButtonDeletebook()
 {
     if (m_pMainManager == nullptr) return;
 
@@ -135,5 +135,5 @@ void CManagerDlg::OnBnClickedButtonDeletebook()
     }
 
     AfxMessageBox(L"도서 삭제 요청 완료");
-}
+}*/
 

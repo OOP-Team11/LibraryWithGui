@@ -42,6 +42,8 @@ BEGIN_MESSAGE_MAP(CMainDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_DOLOAN, &CMainDlg::OnBnClickedButtonDoloan)
 	ON_BN_CLICKED(IDC_BUTTON_MANAGE, &CMainDlg::OnBnClickedButtonManage)
 	ON_LBN_SELCHANGE(IDC_LIST_BOOKS, &CMainDlg::OnLbnSelchangeListBooks)
+	//ON_BN_CLICKED(IDC_BUTTON1, &CMainDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON_DELETEBOOK, &CMainDlg::OnBnClickedButtonDeletebook)
 END_MESSAGE_MAP()
 
 
@@ -165,6 +167,12 @@ void CMainDlg::OnBnClickedButtonManage()
 }
 
 void CMainDlg::OnLbnSelchangeListBooks() 
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+
+void CMainDlg::OnBnClickedButtonDeletebook()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
