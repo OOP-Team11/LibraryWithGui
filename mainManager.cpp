@@ -25,18 +25,48 @@ void MainManager::Exit() {
 	(this->books).save(bookfile); 
 	(this->loans).save(loanfile); 
 }
+<<<<<<< HEAD
 // íšŒì› ê´€ë ¨
+=======
+// È¸¿ø °ü·Ã
+/* username, userrole ¼³Á¤ÇÏ´Â ¿ªÇÒ? login¿¡¼­ ÇÑ¹ø¿¡ ÇÏ¸é µÉµí */
+>>>>>>> e6e231449a7f96bd81c1a847d3a627730a82d818
 void MainManager::setMembers() { 
-	
 }
+/* È¸¿ø °¡ÀÔ */
 void MainManager::join(string name, string password) { 
-
+	members.join(name, password);
 }
-void MainManager::login(string name, string password) { 
+/* ·Î±×ÀÎ */
+bool MainManager::login(string name, string password) {
 
+<<<<<<< HEAD
 }	// ì—¬ê¸°ì„œ userId <- ë°˜í™˜ëœ id ì—°ê²°ì‹œí‚¤ê¸° 
 void MainManager::deleteMe() { 
+=======
+	const Member* currentUser = members.login(name, password);
+	if (currentUser == nullptr) return false;
 
+	(this->userId) = (currentUser->getId());
+	(this->username) = (currentUser->getName());
+	(this->userrole) = (currentUser->getRole());
+	return true;
+}	// ¿©±â¼­ userId <- ¹İÈ¯µÈ id ¿¬°á½ÃÅ°±â 
+/* Å»Åğ */
+bool MainManager::deleteMe() { 
+	return members.deleteMember(this->userId);
+}
+/* getters */
+>>>>>>> e6e231449a7f96bd81c1a847d3a627730a82d818
+
+int MainManager::getUserId() {
+	return this->userId;
+}
+string MainManager::getUserName() {
+	return this->username;
+}
+Role MainManager::getUserRole() {
+	return this->userrole;
 }
 
 // ë„ì„œ ê´€ë ¨ 

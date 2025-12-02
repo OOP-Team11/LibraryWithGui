@@ -1,4 +1,4 @@
-1,Admin,Amy,pw1,0
+1,User,Amy,pw1,0
 3,User,Kate,pw3,0
 4,User,Zach,pw4,0
 5,User,Daniel,pw5,-1

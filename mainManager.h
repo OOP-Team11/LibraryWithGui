@@ -11,9 +11,9 @@ using namespace std;
 
 class MainManager {
 private:
-	string memberfile = "member.txt";
-	string bookfile = "book.txt";
-	string loanfile = "loan.txt";
+	string memberfile = "members.txt";
+	string bookfile = "books.txt";
+	string loanfile = "loans.txt";
 	MemberManager members;
 	BookManager books;
 	LoanManager loans;
@@ -30,8 +30,12 @@ public:
 	// 회원 관련
 	void setMembers();
 	void join(string name, string password);
-	void login(string name, string password); // 여기서 userId <- 반환된 id 연결시키기
-	void deleteMe();
+
+	bool login(string name, string password); // 여기서 userId <- 반환된 id 연결시키기
+	bool deleteMe();
+	int getUserId();
+	string getUserName();
+	Role getUserRole();
 
 	// 도서 관련
 	void setBooks(int id);

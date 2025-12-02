@@ -5,6 +5,11 @@
 #include "Project4two.h"
 #include "afxdialogex.h"
 #include "CLoginDlg.h"
+#include <atlstr.h>
+#include <string>
+#include <atlconv.h>
+
+
 
 
 // CLoginDlg 대화 상자
@@ -12,8 +17,9 @@
 IMPLEMENT_DYNAMIC(CLoginDlg, CDialogEx)
 
 CLoginDlg::CLoginDlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_DIALOG_LOGIN, pParent)
-{
+	: CDialogEx(IDD_DIALOG_LOGIN, pParent),
+	m_pMainManager(nullptr)
+{	
 
 }
 
@@ -24,6 +30,8 @@ CLoginDlg::~CLoginDlg()
 void CLoginDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_EDIT_NICKNAME, m_nickname);
+	DDX_Text(pDX, IDC_EDIT_PASSWORD, m_password);
 }
 
 void CLoginDlg::setManager(MainManager* ptr) {
@@ -42,34 +50,56 @@ END_MESSAGE_MAP()
 
 void CLoginDlg::OnEnChangeEditNickname() 
 {
-	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
-	// CDialogEx::OnInitDialog() 함수를 재지정 
-	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
-	// ENM_CHANGE가 있으면 마스크에 ORed를 플래그합니다.
-
-	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
 void CLoginDlg::OnBnClickedButtonJoin() 
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	USES_CONVERSION;
+	UpdateData(TRUE); // ★ Edit -> CString 자동 복사
+
+	if (m_nickname.IsEmpty() || m_password.IsEmpty()) {
+		AfxMessageBox(L"닉네임과 비밀번호를 입력하세요.");
+		return;
+	}
+
+	// CString -> string 변환
+	CW2A nicknameConv(m_nickname, CP_UTF8);
+	CW2A passwordConv(m_password, CP_UTF8);
+	std::string nickname(nicknameConv);
+	std::string password(passwordConv);
+
+	m_pMainManager->join(nickname, password);
+	AfxMessageBox(L"회원가입이 완료되었습니다.");
+
+	EndDialog(IDOK);
 }
 
 void CLoginDlg::OnEnChangeEditPassword() 
 {
-	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
-	// CDialogEx::OnInitDialog() 함수를 재지정 
-	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
-	// ENM_CHANGE가 있으면 마스크에 ORed를 플래그합니다.
-
-	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
 void CLoginDlg::OnBnClickedButtonLogin() 
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	USES_CONVERSION;
+	UpdateData(TRUE); // ★ Edit -> CString 자동 복사
 
-	// 일단 동작 테스트용
-	//AfxMessageBox(L"Login 버튼 클릭됨"); // 출력 확인
+	if (m_nickname.IsEmpty() || m_password.IsEmpty()) {
+		AfxMessageBox(L"닉네임과 비밀번호를 입력하세요.");
+		return;
+	}
+
+
+	CW2A nicknameConv(m_nickname, CP_UTF8);
+	CW2A passwordConv(m_password, CP_UTF8);
+	std::string nickname(nicknameConv);
+	std::string password(passwordConv);
+
+	bool result = m_pMainManager->login(nickname, password);
+
+	if (result)
+		AfxMessageBox(L"로그인이 완료되었습니다.");
+	else
+		AfxMessageBox(L"로그인에 실패하였습니다.");
+
 	EndDialog(IDOK);
 }
