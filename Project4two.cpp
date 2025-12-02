@@ -1,24 +1,24 @@
 ﻿
-// Project4two.cpp: 애플리케이션에 대한 클래스 동작을 정의합니다.
+// Project4two.cpp: 애플리케이션에 대한 클래스 동작을 정의합니다. 
 //
 
 #include "pch.h"
 #include "framework.h"
-#include "Project4two.h"
+#include "Project4two.h" 
 //#include "Project4twoDlg.h"
-#include "CLoginDlg.h"
-#include "CJoinSuccessDlg.h"
-#include "CJoinFailDlg.h"
-#include "CLoginFailDlg.h"
-#include "CMainDlg.h"
-#include "mainManager.h"
+#include "CLoginDlg.h" 
+#include "CJoinSuccessDlg.h" 
+#include "CJoinFailDlg.h" 
+#include "CLoginFailDlg.h" 
+#include "CMainDlg.h" 
+#include "mainManager.h" 
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-// 메인 매니저
-MainManager mainManager;
+// 메인 매니저 
+MainManager mainManager; 
 
 // CProject4twoApp
 
@@ -46,7 +46,7 @@ CProject4twoApp theApp;
 
 // CProject4twoApp 초기화
 
-BOOL CProject4twoApp::InitInstance()
+BOOL CProject4twoApp::InitInstance() 
 {
 	// Windows XP에서는 InitCommonControlsEx()를 필요로 합니다.
 	// 사용하도록 지정하는 경우, Windows XP 상에서 반드시 InitCommonControlsEx()가 필요합니다.
@@ -98,35 +98,35 @@ BOOL CProject4twoApp::InitInstance()
 		TRACE(traceAppMsg, 0, "경고: 대화 상자에서 MFC 컨트롤을 사용하는 경우 #define _AFX_NO_MFC_CONTROLS_IN_DIALOGS를 수행할 수 없습니다.\n");
 	}*/
 
-	// ============================
-   // 1) 로그인 창 실행
-   // ============================
-	CLoginDlg loginDlg;
-	loginDlg.setManager(&mainManager);
-	INT_PTR loginResult = loginDlg.DoModal();
+	// ============================ 
+   // 1) 로그인 창 실행 
+   // ============================ 
+	CLoginDlg loginDlg; 
+	loginDlg.setManager(&mainManager); 
+	INT_PTR loginResult = loginDlg.DoModal(); 
 
-	if (loginResult != IDOK) {
-		// 로그인 실패 또는 취소 → 프로그램 종료
-		if (pShellManager != nullptr)
-			delete pShellManager;
-		return FALSE;
-	}
+	if (loginResult != IDOK) { 
+		// 로그인 실패 또는 취소 → 프로그램 종료 
+		if (pShellManager != nullptr) 
+			delete pShellManager; 
+		return FALSE; 
+	} 
 
-	// ============================
-	// 2) 로그인 성공 → MainDlg 실행
-	// ============================
-	CMainDlg mainDlg;
-	mainDlg.setManager(&mainManager);
-	m_pMainWnd = &mainDlg;
+	// ============================ 
+	// 2) 로그인 성공 → MainDlg 실행 
+	// ============================ 
+	CMainDlg mainDlg; 
+	mainDlg.setManager(&mainManager); 
+	m_pMainWnd = &mainDlg; 
 
-	INT_PTR mainResult = mainDlg.DoModal();
+	INT_PTR mainResult = mainDlg.DoModal(); 
+	 
+	if (pShellManager != nullptr) 
+		delete pShellManager; 
 
-	if (pShellManager != nullptr)
-		delete pShellManager;
-
-	// 메인 다이얼로그가 닫히면 그냥 앱 종료
-	// (OK로 닫든 Cancel로 닫든 여기까지 오면 종료)
-	mainManager.Exit();
-	return FALSE;
+	// 메인 다이얼로그가 닫히면 그냥 앱 종료 
+	// (OK로 닫든 Cancel로 닫든 여기까지 오면 종료) 
+	mainManager.Exit(); 
+	return FALSE; 
 }
 

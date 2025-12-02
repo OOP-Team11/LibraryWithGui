@@ -47,7 +47,7 @@ END_MESSAGE_MAP()
 
 // CMainDlg 메시지 처리기
 
-void CMainDlg::OnEnChangeEditBookname()
+void CMainDlg::OnEnChangeEditBookname() 
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
 	// CDialogEx::OnInitDialog() 함수를 재지정 
@@ -57,7 +57,7 @@ void CMainDlg::OnEnChangeEditBookname()
 	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMainDlg::OnEnChangeEditWriter()
+void CMainDlg::OnEnChangeEditWriter() 
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
 	// CDialogEx::OnInitDialog() 함수를 재지정 
@@ -67,12 +67,12 @@ void CMainDlg::OnEnChangeEditWriter()
 	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMainDlg::OnCbnSelchangeComboCategory()
+void CMainDlg::OnCbnSelchangeComboCategory() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMainDlg::OnBnClickedButtonMy()
+void CMainDlg::OnBnClickedButtonMy() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	// MyPage 창 실행
@@ -82,22 +82,22 @@ void CMainDlg::OnBnClickedButtonMy()
 
 }
 
-void CMainDlg::OnBnClickedButtonGetbooks()
+void CMainDlg::OnBnClickedButtonGetbooks() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMainDlg::OnBnClickedButtonSearchbook()
+void CMainDlg::OnBnClickedButtonSearchbook() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMainDlg::OnBnClickedButtonDoloan()
+void CMainDlg::OnBnClickedButtonDoloan() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
-void CMainDlg::OnBnClickedButtonManage()
+void CMainDlg::OnBnClickedButtonManage() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	// Manager 페이지 생성
@@ -107,7 +107,7 @@ void CMainDlg::OnBnClickedButtonManage()
 	INT_PTR managerResult = managerDlg.DoModal();
 }
 
-void CMainDlg::OnLbnSelchangeListBooks()
+void CMainDlg::OnLbnSelchangeListBooks() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
