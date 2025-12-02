@@ -25,9 +25,9 @@ public:
 	void save(string filename); 
 
 	// 외부 기능 functions
-	void insertBook(string name, string writer); // 도서 등록 : bookCount 통해 Book() 생성 -> addBook 으로 DB에 추가
+	void insertBook(string name, string writer, BookCategory category); // 도서 등록 : bookCount 통해 Book() 생성 -> addBook 으로 DB에 추가
 	vector<Book> getAllBooks() const; // 도서 조회(전체)
-	vector<Book> searchBook(string name, string writer) const; // 도서 검색 (책 이름, 작가 이름), findBook 이용하기
+	vector<Book> searchBook(string name, string writer, BookCategory bookcategory) const; // 도서 검색 (책 이름, 작가 이름), findBook 이용하기
 	void deleteBook(int bookId, int yourId); // 도서 삭제 + yourId는 명령 실행하는 사용자 권한 체크용
 
 };

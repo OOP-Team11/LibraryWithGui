@@ -154,7 +154,7 @@ void BookManager::save(string filename) {
     }
 }
 
-void BookManager::insertBook(string name, string writer) {
+void BookManager::insertBook(string name, string writer, BookCategory category) {
     int newId = this->bookCount; //bookCount로 ID 생성
     // 기본 카테고리 General(0)으로 생성
     Book newBook(newId, name, writer, BookCategory::General);
@@ -167,16 +167,30 @@ vector<Book> BookManager::getAllBooks() const {
     return this->books;
 }
 
-vector<Book> BookManager::searchBook(string name, string writer) const {
+vector<Book> BookManager::searchBook(string name, string writer, BookCategory category) const {
     vector<Book> result;
+
     for (const auto& book : books) {
-        // 이름 검색
+        // 1. 카테고리 확인
+        // "전체(All)"이거나, 아니면 "카테고리가 정확히 일치"하는 경우 통과
+        bool catMatch = (category == BookCategory::All) || (book.getCategory() == category);
+
+        // 2. 이름 검색
         bool nameMatch = (name != "" && book.getName().find(name) != string::npos);
-        // 작가 검색
+
+        // 3. 작가 검색
         bool writerMatch = (writer != "" && book.getWriter().find(writer) != string::npos);
 
-        if (nameMatch || writerMatch) {
-            result.push_back(book);
+        // [최종 판단]
+        if (name == "" && writer == "") {
+            // 이름/작가 입력 없이 카테고리만 검색하는 경우 (단, All이면 전체 출력이 되므로 주의)
+            // 보통 전체 출력을 막고 싶으면 여기서 && category != BookCategory::All 조건을 걸기도 함
+            if (catMatch) result.push_back(book);
+        }
+        else {
+            if (catMatch && (nameMatch || writerMatch)) {
+                result.push_back(book);
+            }
         }
     }
     return result;

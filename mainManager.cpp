@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "mainManager.h"
 
 
@@ -8,24 +8,24 @@ MainManager::MainManager()
 	books(bookfile), 
 	loans(loanfile) 
 {
-	this->userId = -1; // ÇöÀç ÇÁ·Î±×·¥ »ç¿ëÇÏ°íÀÖ´Â À¯Àú ¾ÆÀÌµğ. ·Î±×ÀÎÇÏ¸é ¿©±â °»½Å(?) 
-	this->username = ""; // »ç¿ëÀÚ ÀÌ¸§ 
-	Role userrole = Role::User; // »ç¿ëÀÚ ±ÇÇÑ 
+	this->userId = -1; // í˜„ì¬ í”„ë¡œê·¸ë¨ ì‚¬ìš©í•˜ê³ ìˆëŠ” ìœ ì € ì•„ì´ë””. ë¡œê·¸ì¸í•˜ë©´ ì—¬ê¸° ê°±ì‹ (?) 
+	this->username = ""; // ì‚¬ìš©ì ì´ë¦„ 
+	Role userrole = Role::User; // ì‚¬ìš©ì ê¶Œí•œ 
 
 	/*setMembers();
 	setBooks();
 	setLoans();*/
 }
 
-// ±â´É
+// ê¸°ëŠ¥
 void MainManager::Exit() { 
 
-	// ÆÄÀÏ ÀúÀå
+	// íŒŒì¼ ì €ì¥
 	(this->members).save(memberfile); 
 	(this->books).save(bookfile); 
 	(this->loans).save(loanfile); 
 }
-// È¸¿ø °ü·Ã
+// íšŒì› ê´€ë ¨
 void MainManager::setMembers() { 
 	
 }
@@ -34,32 +34,32 @@ void MainManager::join(string name, string password) {
 }
 void MainManager::login(string name, string password) { 
 
-}	// ¿©±â¼­ userId <- ¹İÈ¯µÈ id ¿¬°á½ÃÅ°±â 
+}	// ì—¬ê¸°ì„œ userId <- ë°˜í™˜ëœ id ì—°ê²°ì‹œí‚¤ê¸° 
 void MainManager::deleteMe() { 
 
 }
 
-// µµ¼­ °ü·Ã 
-void MainManager::setBooks() { 
+// ë„ì„œ ê´€ë ¨ 
+void MainManager::setBooks(int id) { 
 
 }
-void MainManager::getAllBooks() { 
-
+vector<Book> MainManager::getAllBooks() { 
+	return (this->books).getAllBooks();
 }
-void MainManager::searchBook(string bookname, string writer, string category) { // Ä«Å×°í¸® ÀÖ¾îµµ µÇ°í ¾ø¾îµµ µÇ°í{ 
-
-}
-
-void MainManager::insertBook(string bookname, string writer, string category) { 
-
-}
-void MainManager::deleteBook() { 
-
+vector<Book> MainManager::searchBook(string bookname, string writer, BookCategory category) { // ì¹´í…Œê³ ë¦¬ ìˆì–´ë„ ë˜ê³  ì—†ì–´ë„ ë˜ê³ { 
+	return (this->books).searchBook(bookname, writer, category);
 }
 
-// ´ëÃâ °ü·Ã
+void MainManager::insertBook(string bookname, string writer, BookCategory category) { 
+	(this->books).insertBook(bookname, writer, category);
+}
+void MainManager::deleteBook(int bookid, int yourid) { 
+	(this->books).deleteBook(bookid, yourid);
+}
+
+// ëŒ€ì¶œ ê´€ë ¨
 void MainManager::setLoans() { 
-
+	
 }
 void MainManager::doLoan(int bookid, string bookname, string writer, string category) { 
 

@@ -72,6 +72,7 @@ void CMainDlg::OnCbnSelchangeComboCategory()
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
+
 void CMainDlg::OnBnClickedButtonMy() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
@@ -82,15 +83,71 @@ void CMainDlg::OnBnClickedButtonMy()
 
 }
 
-void CMainDlg::OnBnClickedButtonGetbooks() 
+void CMainDlg::OnBnClickedButtonGetbooks()
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	if (m_pMainManager == nullptr) return;
+
+	// MainManager에서 전체 리스트 가져오기
+	vector<Book> list = m_pMainManager->getAllBooks();
+
+	// 리스트박스 초기화
+	CListBox* pList = (CListBox*)GetDlgItem(IDC_LIST_BOOKS);
+	pList->ResetContent();
+
+	// 출력
+	for (auto& b : list) {
+		CString item;
+		item.Format(L"[ID:%d] %S / %S / 카테고리:%d",
+			b.getId(),
+			b.getName().c_str(),
+			b.getWriter().c_str(),
+			(int)b.getCategory()
+		);
+		pList->AddString(item);
+	}
 }
 
-void CMainDlg::OnBnClickedButtonSearchbook() 
+
+void CMainDlg::OnBnClickedButtonSearchbook()
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	if (m_pMainManager == nullptr) return;
+
+	//writer, name 입력 가져오기
+	CString cname, cwriter;
+	GetDlgItemText(IDC_EDIT_BOOKNAME, cname);
+	GetDlgItemText(IDC_EDIT_WRITER, cwriter);
+
+	// CString → string 안전 변환
+	CT2A convName(cname);
+	CT2A convWriter(cwriter);
+	string name = string(convName);
+	string writer = string(convWriter);
+
+
+	// 카테고리
+	CComboBox* pCombo = (CComboBox*)GetDlgItem(IDC_COMBO_CATEGORY);
+	int catIndex = pCombo->GetCurSel();
+	BookCategory category = (BookCategory)catIndex;
+
+	// 검색 실행
+	vector<Book> list = m_pMainManager->searchBook(name, writer, category);
+
+	// 출력
+	CListBox* pList = (CListBox*)GetDlgItem(IDC_LIST_BOOKS);
+	pList->ResetContent();
+
+	for (auto& b : list) {
+		CString item;
+		item.Format(L"[ID:%d] %S / %S / 카테고리:%d",
+			b.getId(),
+			b.getName().c_str(),
+			b.getWriter().c_str(),
+			(int)b.getCategory()
+		);
+		pList->AddString(item);
+	}
 }
+
 
 void CMainDlg::OnBnClickedButtonDoloan() 
 {
