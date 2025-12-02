@@ -14,7 +14,6 @@ IMPLEMENT_DYNAMIC(CMyDlg, CDialogEx)
 CMyDlg::CMyDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_DIALOG_MY, pParent)
 {
-
 }
 
 CMyDlg::~CMyDlg()
@@ -74,4 +73,14 @@ void CMyDlg::OnBnClickedButtonDeleteme()
 	}
 	else AfxMessageBox(L"탈퇴에 실패하였습니다.");
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+BOOL CMyDlg::OnInitDialog() {
+	CDialogEx::OnInitDialog();
+
+	// 사용자 이름 표시
+	CString username(m_pMainManager->getUserName().c_str());
+	SetDlgItemText(IDC_EDIT_USERNAME, username);
+
+	return TRUE;
 }

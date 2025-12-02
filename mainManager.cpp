@@ -48,6 +48,17 @@ bool MainManager::login(string name, string password) {
 bool MainManager::deleteMe() { 
 	return members.deleteMember(this->userId);
 }
+/* getters */
+
+int MainManager::getUserId() {
+	return this->userId;
+}
+string MainManager::getUserName() {
+	return this->username;
+}
+Role MainManager::getUserRole() {
+	return this->userrole;
+}
 
 // 도서 관련 
 void MainManager::setBooks() { 

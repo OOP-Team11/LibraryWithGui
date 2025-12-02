@@ -32,6 +32,9 @@ public:
 	void join(string name, string password);
 	bool login(string name, string password); // 여기서 userId <- 반환된 id 연결시키기
 	bool deleteMe();
+	int getUserId();
+	string getUserName();
+	Role getUserRole();
 
 	// 도서 관련
 	void setBooks();
