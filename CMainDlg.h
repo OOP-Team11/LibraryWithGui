@@ -37,4 +37,5 @@ public:
 	afx_msg void OnLbnSelchangeListBooks();
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButtonDeletebook();
+	afx_msg void OnCbnSelchangeEdit1();
 };

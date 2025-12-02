@@ -197,15 +197,14 @@ vector<Book> BookManager::searchBook(string name, string writer, BookCategory ca
 }
 
 void BookManager::deleteBook(int bookId, int yourId) {
-    if (yourId == 1234) {
-        if (removeBook(bookId)) {
-            cout << "도서(ID: " << bookId << ")가 삭제되었습니다." << endl;
-        }
-        else {
-            cout << "해당 ID의 도서를 찾을 수 없습니다." << endl;
-        }
+    if (yourId != 1234) {
+        throw runtime_error("관리자 권한이 없습니다.");
     }
-    else {
-        cout << "삭제 권한이 없습니다." << endl;
+
+    // removeBook 실패 = 해당 ID 없음
+    if (!removeBook(bookId)) {
+        throw runtime_error("해당 ID의 도서를 찾을 수 없습니다.");
     }
+
+    cout << "도서(ID: " << bookId << ")가 삭제되었습니다." << endl;
 }
