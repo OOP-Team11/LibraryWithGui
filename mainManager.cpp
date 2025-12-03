@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+癤#include "pch.h"
 #include "mainManager.h"
 
 
@@ -8,36 +8,36 @@ MainManager::MainManager()
 	books(bookfile), 
 	loans(loanfile) 
 {
-	this->userId = -1; // 현재 프로그램 사용하고있는 유저 아이디. 로그인하면 여기 갱신(?) 
-	this->username = ""; // 사용자 이름 
-	Role userrole = Role::User; // 사용자 권한 
+	this->userId = -1; //  濡洹몃 ъ⑺怨 � 대. 濡洹몄명硫 ш린 媛깆(?) 
+	this->username = ""; // ъ⑹ 대 
+	Role userrole = Role::User; // ъ⑹ 沅 
 
 	/*setMembers();
 	setBooks();
 	setLoans();*/
 }
 
-// 기능
+// 湲곕
 void MainManager::Exit() { 
 
-	// 파일 저장
+	//  �
 	(this->members).save(memberfile); 
 	(this->books).save(bookfile); 
 	(this->loans).save(loanfile); 
 }
 
-// 회원 관련
+//  愿�
 
-// ȸ�� ����
-/* username, userrole �����ϴ� ����? login���� �ѹ��� �ϸ� �ɵ� */
+// 회占쏙옙 占쏙옙占쏙옙
+/* username, userrole 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙? login占쏙옙占쏙옙 占싼뱄옙占쏙옙 占싹몌옙 占심듸옙 */
 
 void MainManager::setMembers() { 
 }
-/* ȸ�� ���� */
-void MainManager::join(string name, string password) { 
-	members.join(name, password);
+/* 회원 가입 */
+bool MainManager::join(string name, string password) { 
+	return members.join(name, password);
 }
-/* �α��� */
+/* 占싸깍옙占쏙옙 */
 bool MainManager::login(string name, string password) {
 	const Member* currentUser = members.login(name, password);
 	if (currentUser == nullptr) return false;
@@ -46,7 +46,7 @@ bool MainManager::login(string name, string password) {
 	(this->username) = (currentUser->getName());
 	(this->userrole) = (currentUser->getRole());
 	return true;
-}	// 여기서 userId <- 반환된 id 연결시키기 
+}	// ш린 userId <- 諛 id 곌껐ㅺ린 
 
 bool MainManager::deleteMe() { 
 	return members.deleteMember(this->userId);
@@ -63,14 +63,14 @@ Role MainManager::getUserRole() {
 	return this->userrole;
 }
 
-// 도서 관련 
+//  愿� 
 void MainManager::setBooks(int id) { 
 
 }
 vector<Book> MainManager::getAllBooks() { 
 	return (this->books).getAllBooks();
 }
-vector<Book> MainManager::searchBook(string bookname, string writer, BookCategory category) { // 카테고리 있어도 되고 없어도 되고{ 
+vector<Book> MainManager::searchBook(string bookname, string writer, BookCategory category) { // 移댄怨由 대 怨 대 怨{ 
 	return (this->books).searchBook(bookname, writer, category);
 }
 
@@ -81,7 +81,7 @@ void MainManager::deleteBook(int bookid, int yourid) {
 	(this->books).deleteBook(bookid, yourid);
 }
 
-// 대출 관련
+// 異 愿�
 void MainManager::setLoans() { 
 	
 }

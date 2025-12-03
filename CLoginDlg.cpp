@@ -68,10 +68,15 @@ void CLoginDlg::OnBnClickedButtonJoin()
 	std::string nickname(nicknameConv);
 	std::string password(passwordConv);
 
-	m_pMainManager->join(nickname, password);
-	AfxMessageBox(L"회원가입이 완료되었습니다.");
+	if (m_pMainManager->join(nickname, password)) {
+		AfxMessageBox(L"회원가입이 완료되었습니다.");
+		EndDialog(IDOK);
+	}
+	else {
+		AfxMessageBox(L"이미 존재하는 닉네임입니다. 다시 시도하세요.");
+	}
 
-	EndDialog(IDOK);
+	
 }
 
 void CLoginDlg::OnEnChangeEditPassword() 
@@ -96,10 +101,12 @@ void CLoginDlg::OnBnClickedButtonLogin()
 
 	bool result = m_pMainManager->login(nickname, password);
 
-	if (result)
+	if (result) {
 		AfxMessageBox(L"로그인이 완료되었습니다.");
+		EndDialog(IDOK);
+	}
 	else
 		AfxMessageBox(L"로그인에 실패하였습니다.");
 
-	EndDialog(IDOK);
+	
 }
