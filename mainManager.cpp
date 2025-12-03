@@ -1,4 +1,4 @@
-癤#include "pch.h"
+#include "pch.h"
 #include "mainManager.h"
 
 
@@ -8,28 +8,26 @@ MainManager::MainManager()
 	books(bookfile), 
 	loans(loanfile) 
 {
-	this->userId = -1; //  濡洹몃 ъ⑺怨 � 대. 濡洹몄명硫 ш린 媛깆(?) 
-	this->username = ""; // ъ⑹ 대 
-	Role userrole = Role::User; // ъ⑹ 沅 
+	this->userId = -1; // 현재 프로그램 사용하고있는 유저 아이디. 로그인하면 여기 갱신(?) 
+	this->username = ""; // 사용자 이름
+	Role userrole = Role::User; // 사용자 권한
 
 	/*setMembers();
 	setBooks();
 	setLoans();*/
 }
 
-// 湲곕
+// 기능
 void MainManager::Exit() { 
 
-	//  �
+	// 파일 저장
 	(this->members).save(memberfile); 
 	(this->books).save(bookfile); 
 	(this->loans).save(loanfile); 
 }
 
-//  愿�
-
-// 회占쏙옙 占쏙옙占쏙옙
-/* username, userrole 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙? login占쏙옙占쏙옙 占싼뱄옙占쏙옙 占싹몌옙 占심듸옙 */
+// 회원 관련
+/* username, userrole 설정하는 역할? login에서 한번에 하면 될듯 */
 
 void MainManager::setMembers() { 
 }
@@ -37,7 +35,7 @@ void MainManager::setMembers() {
 bool MainManager::join(string name, string password) { 
 	return members.join(name, password);
 }
-/* 占싸깍옙占쏙옙 */
+/* 로그인 */
 bool MainManager::login(string name, string password) {
 	const Member* currentUser = members.login(name, password);
 	if (currentUser == nullptr) return false;
@@ -46,8 +44,9 @@ bool MainManager::login(string name, string password) {
 	(this->username) = (currentUser->getName());
 	(this->userrole) = (currentUser->getRole());
 	return true;
-}	// ш린 userId <- 諛 id 곌껐ㅺ린 
+}	// 여기서 userId <- 반환된 id 연결시키기
 
+/* 탈퇴 */
 bool MainManager::deleteMe() { 
 	return members.deleteMember(this->userId);
 }
@@ -63,14 +62,14 @@ Role MainManager::getUserRole() {
 	return this->userrole;
 }
 
-//  愿� 
+// 도서 관련
 void MainManager::setBooks(int id) { 
 
 }
 vector<Book> MainManager::getAllBooks() { 
 	return (this->books).getAllBooks();
 }
-vector<Book> MainManager::searchBook(string bookname, string writer, BookCategory category) { // 移댄怨由 대 怨 대 怨{ 
+vector<Book> MainManager::searchBook(string bookname, string writer, BookCategory category) { // 
 	return (this->books).searchBook(bookname, writer, category);
 }
 
@@ -81,7 +80,7 @@ void MainManager::deleteBook(int bookid, int yourid) {
 	(this->books).deleteBook(bookid, yourid);
 }
 
-// 異 愿�
+// 대출 관련
 void MainManager::setLoans() { 
 	
 }
