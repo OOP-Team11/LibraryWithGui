@@ -26,17 +26,38 @@ void MainManager::Exit() {
 	(this->loans).save(loanfile); 
 }
 // 회원 관련
+/* username, userrole 설정하는 역할? login에서 한번에 하면 될듯 */
 void MainManager::setMembers() { 
-	
 }
-void MainManager::join(string name, string password) { 
-
+/* 회원 가입 */
+bool MainManager::join(string name, string password) { 
+	return members.join(name, password);
 }
-void MainManager::login(string name, string password) { 
+/* 로그인 */
+bool MainManager::login(string name, string password) {
 
+	const Member* currentUser = members.login(name, password);
+	if (currentUser == nullptr) return false;
+
+	(this->userId) = (currentUser->getId());
+	(this->username) = (currentUser->getName());
+	(this->userrole) = (currentUser->getRole());
+	return true;
 }	// 여기서 userId <- 반환된 id 연결시키기 
-void MainManager::deleteMe() { 
+/* 탈퇴 */
+bool MainManager::deleteMe() { 
+	return members.deleteMember(this->userId);
+}
+/* getters */
 
+int MainManager::getUserId() {
+	return this->userId;
+}
+string MainManager::getUserName() {
+	return this->username;
+}
+Role MainManager::getUserRole() {
+	return this->userrole;
 }
 
 // 도서 관련 
