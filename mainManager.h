@@ -1,4 +1,4 @@
-#pragma once
+ç™¤#pragma once
 #include "memberManager.h"
 #include "bookManager.h"
 #include "loanManager.h"
@@ -17,34 +17,34 @@ private:
 	MemberManager members;
 	BookManager books;
 	LoanManager loans;
-	int userId; // ÇöÀç ÇÁ·Î±×·¥ »ç¿ëÇÏ°íÀÖ´Â À¯Àú ¾ÆÀÌµğ. ·Î±×ÀÎÇÏ¸é ¿©±â °»½Å(?)
-	string username; // »ç¿ëÀÚ ÀÌ¸§
-	Role userrole; // »ç¿ëÀÚ ±ÇÇÑ
+	int userId; // Â˜Â„Â Â”Â„æ¿¡Âœæ´¹ëªƒÂ Â‚ÑŠÂšâ‘ºÂ•Â˜æ€¨ÂÂˆÂŠÂ” Âœï¿½Â€ Â•Â„ÂëŒ€Â”Â”. æ¿¡Âœæ´¹ëª„Âëª…Â•Â˜ï§ Â—Ñˆë¦° åª›ê¹†Â‹(?)
+	string username; // Â‚ÑŠÂšâ‘¹ÂÂ ÂëŒ€Â„
+	Role userrole; // Â‚ÑŠÂšâ‘¹ÂÂ æ²…ÂŒÂ•Âœ
 
 public:
 	// constructor
 	MainManager();
 
-	// ±â´É
-	void Exit(); // Ã¢ ²ô±âÀü¿¡ ÆÄÀÏ ÀúÀå ¹× Á¾·á
-	// È¸¿ø °ü·Ã
+	// æ¹²ê³•ÂŠ
+	void Exit(); // ï§¡ ÂÂ„æ¹²ê³—Â„Â—Â ÂŒÂŒÂ ï¿½Â€Â è«› é†«Â…çŒ·ÂŒ
+	// ÂšÂŒÂ›Â æ„¿Â€ï¿½
 	void setMembers();
 	bool join(string name, string password);
-	bool login(string name, string password); // ¿©±â¼­ userId <- ¹İÈ¯µÈ id ¿¬°á½ÃÅ°±â
+	bool login(string name, string password); // ì—¬ê¸°ì„œ userId <- ë°˜í™˜ëœ id ì—°ê²°ì‹œí‚¤ê¸°
 	bool deleteMe();
 	int getUserId();
 	string getUserName();
 	Role getUserRole();
 
-	// µµ¼­ °ü·Ã
-	void setBooks();
-	void getAllBooks();
-	void searchBook(string bookname, string writer, string category); // Ä«Å×°í¸® ÀÖ¾îµµ µÇ°í ¾ø¾îµµ µÇ°í
+	// Â„Â„Âœ æ„¿Â€ï¿½
+	void setBooks(int id);
+	vector<Book> getAllBooks();
+	vector<Book> searchBook(string bookname, string writer, BookCategory category); // ç§»ëŒ„Â…ÂŒæ€¨ç”± ÂÂˆÂ–ëŒ€Â„ ÂÂ˜æ€¨ Â—Â†Â–ëŒ€Â„ ÂÂ˜æ€¨
 
-	void insertBook(string bookname, string writer, string category);
-	void deleteBook();
+	void insertBook(string bookname, string writer, BookCategory category);
+	void deleteBook(int bookid, int yourid);
 
-	// ´ëÃâ °ü·Ã
+	// ÂŒÂ€ç•°Âœ æ„¿Â€ï¿½
 	void setLoans();
 	void doLoan(int bookid, string bookname, string writer, string category);
 };
