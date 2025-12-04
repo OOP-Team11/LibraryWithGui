@@ -11,37 +11,46 @@ using namespace std;
 
 class MainManager {
 private:
-	string memberfile = "member.txt";
-	string bookfile = "book.txt";
-	string loanfile = "loan.txt";
+	string memberfile = "members.txt";
+	string bookfile = "books.txt";
+	string loanfile = "loans.txt";
 	MemberManager members;
 	BookManager books;
 	LoanManager loans;
-	int userId; // ÇöÀç ÇÁ·Î±×·¥ »ç¿ëÇÏ°íÀÖ´Â À¯Àú ¾ÆÀÌµğ. ·Î±×ÀÎÇÏ¸é ¿©±â °»½Å(?)
-	string username; // »ç¿ëÀÚ ÀÌ¸§
-	Role userrole; // »ç¿ëÀÚ ±ÇÇÑ
+	int userId; // í˜„ì¬ í”„ë¡œê·¸ë¨ ì‚¬ìš©í•˜ê³ ìˆëŠ” ìœ ì € ì•„ì´ë””. ë¡œê·¸ì¸í•˜ë©´ ì—¬ê¸° ê°±ì‹ (?)
+	string username; // ì‚¬ìš©ì ì´ë¦„
+	Role userrole; // ì‚¬ìš©ì ê¶Œí•œ
 
 public:
 	// constructor
 	MainManager();
 
-	// ±â´É
-	void Exit(); // Ã¢ ²ô±âÀü¿¡ ÆÄÀÏ ÀúÀå ¹× Á¾·á
-	// È¸¿ø °ü·Ã
+	// ê¸°ëŠ¥
+	void Exit();
+
+	// íšŒì› ê´€ë ¨
 	void setMembers();
-	void join(string name, string password);
-	void login(string name, string password); // ¿©±â¼­ userId <- ¹İÈ¯µÈ id ¿¬°á½ÃÅ°±â
-	void deleteMe();
+	bool join(string name, string password);
+	bool login(string name, string password); // ì—¬ê¸°ì„œ userId <- ë°˜í™˜ëœ id ì—°ê²°ì‹œí‚¤ê¸°
+	bool deleteMe();
+	int getUserId();
+	string getUserName();
+	Role getUserRole();
 
-	// µµ¼­ °ü·Ã
-	void setBooks();
-	void getAllBooks();
-	void searchBook(string bookname, string writer, string category); // Ä«Å×°í¸® ÀÖ¾îµµ µÇ°í ¾ø¾îµµ µÇ°í
+	// ë„ì„œ ê´€ë ¨
+	void setBooks(int id);
+	vector<Book> getAllBooks();
+	vector<Book> searchBook(string bookname, string writer, BookCategory category); // ì¹´í…Œê³ ë¦¬ ìˆì–´ë„ ë˜ê³  ì—†ì–´ë„ ë˜ê³ 
 
-	void insertBook(string bookname, string writer, string category);
-	void deleteBook();
 
-	// ´ëÃâ °ü·Ã
+	void insertBook(string bookname, string writer, BookCategory category);
+	void deleteBook(int bookid, int yourid);
+
+	// ëŒ€ì¶œ ê´€ë ¨
 	void setLoans();
-	void doLoan(int bookid, string bookname, string writer, string category);
+	void doLoan(int bookid);
+	vector<Loan> getMyLoans();
+	void extendLoan(int loanId);
+	void returnLoan(int loanId);
+
 };

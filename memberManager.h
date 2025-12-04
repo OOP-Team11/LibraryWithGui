@@ -40,4 +40,5 @@ public:
 	const vector<Member>& getAllMembers() const; // 모든 회원 조회 -> 근데 필요할까 싶긴함
 	bool deleteMember(int id); // 회원 탈퇴
 
+
 };

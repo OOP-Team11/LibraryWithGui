@@ -1,4 +1,24 @@
-﻿0,The Great Gatsby,F. Scott Fitzgerald,800,0
-1,A Brief History of Time,Stephen Hawking,400,1
+0,The Great Gatsby,F. Scott Fitzgerald,800,0
+1,A Brief History of Time,Stephen Hawking,400,0
 2,Sapiens,Yuval Noah Harari,900,0
 3,Demian,Hermann Hesse,800,0
+4,To Kill a Mockingbird,Harper Lee,700,0
+5,1984,George Orwell,750,0
+6,Brave New World,Aldous Huxley,720,0
+7,The Catcher in the Rye,J.D. Salinger,680,0
+8,The Road,Cormac McCarthy,850,0
+9,Meditations,Marcus Aurelius,600,0
+10,Thinking, Fast and Slow,0,0
+11,The Alchemist,Paulo Coelho,700,0
+12,The Name of the Rose,Umberto Eco,900,0
+13,Fahrenheit 451,Ray Bradbury,720,0
+14,Crime and Punishment,Fyodor Dostoevsky,880,0
+15,The Little Prince,Antoine de Saint-Exupéry,500,0
+16,Norwegian Wood,Haruki Murakami,780,0
+17,Invisible Man,Ralph Ellison,820,0
+18,The Hobbit,J.R.R. Tolkien,850,0
+19,Life of Pi,Yann Martel,760,0
+20,The Old Man and the Sea,Ernest Hemingway,690,0
+21,Man’s Search for Meaning,Viktor E. Frankl,720,0
+22,The Picture of Dorian Gray,Oscar Wilde,740,0
+23,The Kite Runner,Khaled Hosseini,800,0

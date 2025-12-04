@@ -1,5 +1,6 @@
-#pragma once	
+﻿#pragma once	
 enum class BookCategory {
+    All = -1,
     General = 0,
     Philosophy = 100,
     Religion = 200,

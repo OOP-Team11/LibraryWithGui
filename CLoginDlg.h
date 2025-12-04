@@ -20,7 +20,10 @@ public:
 #endif
 
 private :
-	MainManager* m_pMainManager; // 포인터로 보관
+	MainManager* m_pMainManager = nullptr; // 포인터로 보관
+	/* 프라이빗 멤버변수 추가 */
+	CString m_password;
+	CString m_nickname;
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 

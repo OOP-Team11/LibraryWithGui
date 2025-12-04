@@ -21,9 +21,11 @@ public:
 
 private:
 	MainManager* m_pMainManager; // 포인터로 보관
+	int selectedLoanId;
+	void updateLoanList();
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
-
+	virtual BOOL OnInitDialog();
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnLbnSelchangeListLoans();

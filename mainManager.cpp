@@ -2,65 +2,102 @@
 #include "mainManager.h"
 
 
-// constructor
-MainManager::MainManager()
-	: members(memberfile),
-	books(bookfile),
-	loans(loanfile)
+// constructor 
+MainManager::MainManager() 
+	: members(memberfile), 
+	books(bookfile), 
+	loans(loanfile) 
 {
-	this->userId = -1; // ÇöÀç ÇÁ·Î±×·¥ »ç¿ëÇÏ°íÀÖ´Â À¯Àú ¾ÆÀÌµğ. ·Î±×ÀÎÇÏ¸é ¿©±â °»½Å(?)
-	this->username = ""; // »ç¿ëÀÚ ÀÌ¸§
-	Role userrole = Role::User; // »ç¿ëÀÚ ±ÇÇÑ
+	this->userId = -1; // í˜„ì¬ í”„ë¡œê·¸ë¨ ì‚¬ìš©í•˜ê³ ìˆëŠ” ìœ ì € ì•„ì´ë””. ë¡œê·¸ì¸í•˜ë©´ ì—¬ê¸° ê°±ì‹ (?) 
+	this->username = ""; // ì‚¬ìš©ì ì´ë¦„
+	Role userrole = Role::User; // ì‚¬ìš©ì ê¶Œí•œ
 
 	/*setMembers();
 	setBooks();
 	setLoans();*/
 }
 
-// ±â´É
-void MainManager::Exit() {
+// ê¸°ëŠ¥
+void MainManager::Exit() { 
 
-	// ÆÄÀÏ ÀúÀå
-	(this->members).save(memberfile);
-	(this->books).save(bookfile);
-	(this->loans).save(loanfile);
+	// íŒŒì¼ ì €ì¥
+	(this->members).save(memberfile); 
+	(this->books).save(bookfile); 
+	(this->loans).save(loanfile); 
 }
-// È¸¿ø °ü·Ã
-void MainManager::setMembers() {
+
+// íšŒì› ê´€ë ¨
+/* username, userrole ì„¤ì •í•˜ëŠ” ì—­í• ? loginì—ì„œ í•œë²ˆì— í•˜ë©´ ë ë“¯ */
+
+void MainManager::setMembers() { 
+}
+/* íšŒì› ê°€ì… */
+bool MainManager::join(string name, string password) { 
+	return members.join(name, password);
+}
+/* ë¡œê·¸ì¸ */
+bool MainManager::login(string name, string password) {
+	const Member* currentUser = members.login(name, password);
+	if (currentUser == nullptr) return false;
+
+	(this->userId) = (currentUser->getId());
+	(this->username) = (currentUser->getName());
+	(this->userrole) = (currentUser->getRole());
+	return true;
+}	// ì—¬ê¸°ì„œ userId <- ë°˜í™˜ëœ id ì—°ê²°ì‹œí‚¤ê¸°
+
+/* íƒˆí‡´ */
+bool MainManager::deleteMe() { 
+	return members.deleteMember(this->userId);
+}
+/* getters */
+
+int MainManager::getUserId() {
+	return this->userId;
+}
+string MainManager::getUserName() {
+	return this->username;
+}
+Role MainManager::getUserRole() {
+	return this->userrole;
+}
+
+// ë„ì„œ ê´€ë ¨
+void MainManager::setBooks(int id) { 
+
+}
+vector<Book> MainManager::getAllBooks() { 
+	return (this->books).getAllBooks();
+}
+vector<Book> MainManager::searchBook(string bookname, string writer, BookCategory category) { // 
+	return (this->books).searchBook(bookname, writer, category);
+}
+
+void MainManager::insertBook(string bookname, string writer, BookCategory category) { 
+	(this->books).insertBook(bookname, writer, category);
+}
+void MainManager::deleteBook(int bookid, int yourid) { 
+	(this->books).deleteBook(bookid, yourid);
+}
+
+// ëŒ€ì¶œ ê´€ë ¨
+void MainManager::setLoans() { 
 	
 }
-void MainManager::join(string name, string password) {
-
+void MainManager::doLoan(int bookid) { 
+	bool bookState = books.checkBookState(bookid);
+	if (bookState == false) {
+		loans.loan(this->userId, bookid);
+		books.changeBookState(bookid);
+	}
 }
-void MainManager::login(string name, string password) {
-
-}	// ¿©±â¼­ userId <- ¹İÈ¯µÈ id ¿¬°á½ÃÅ°±â
-void MainManager::deleteMe() {
-
+vector<Loan> MainManager::getMyLoans() {
+	return loans.getAllLoansOfMe(this->userId);
 }
-
-// µµ¼­ °ü·Ã
-void MainManager::setBooks() {
-
+void MainManager::extendLoan(int loanId) {
+	loans.extendLoan(loanId);
 }
-void MainManager::getAllBooks() {
-
-}
-void MainManager::searchBook(string bookname, string writer, string category) { // Ä«Å×°í¸® ÀÖ¾îµµ µÇ°í ¾ø¾îµµ µÇ°í{
-
-}
-
-void MainManager::insertBook(string bookname, string writer, string category) {
-
-}
-void MainManager::deleteBook() {
-
-}
-
-// ´ëÃâ °ü·Ã
-void MainManager::setLoans() {
-
-}
-void MainManager::doLoan(int bookid, string bookname, string writer, string category) {
-
+void MainManager::returnLoan(int loanId) {
+	int bookid = loans.returnLoan(loanId);
+	books.changeBookState(bookid);
 }

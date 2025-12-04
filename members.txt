@@ -1,7 +1,9 @@
-1,Admin,Amy,pw1,0
+1,User,Amy,pw1,0
 3,User,Kate,pw3,0
 4,User,Zach,pw4,0
 5,User,Daniel,pw5,-1
 6,User,kim,pw123,0
 7,User,lee,abc,0
 8,User,park,hello,0
+9,User,serin,1234,0
+10,Admin,admin,1234,0
