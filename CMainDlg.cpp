@@ -14,7 +14,7 @@
 IMPLEMENT_DYNAMIC(CMainDlg, CDialogEx)
 
 CMainDlg::CMainDlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_DIALOG_MAIN, pParent)
+	: CDialogEx(IDD_DIALOG_MAIN, pParent), selectedBookId(-1)
 {
 
 }
@@ -118,14 +118,17 @@ void CMainDlg::OnBnClickedButtonGetbooks()
     // 출력
     for (auto& b : list) {
         CString item;
-        // [수정] 카테고리:%d -> %s 로 변경하고 GetCategoryName 함수 사용
-        item.Format(L"[ID:%d] %S / %S / %s",
-            b.getId(),
-            b.getName().c_str(),
-            b.getWriter().c_str(),
-            GetCategoryName(b.getCategory()) // 숫자가 아닌 문자열 반환
-        );
-        pList->AddString(item);
+        if (b.getIsLoan() == 0) {
+            // [수정] 카테고리:%d -> %s 로 변경하고 GetCategoryName 함수 사용
+            item.Format(L"[ID:%d] %S / %S / %s",
+                b.getId(),
+                b.getName().c_str(),
+                b.getWriter().c_str(),
+                GetCategoryName(b.getCategory()) // 숫자가 아닌 문자열 반환
+            );
+            pList->AddString(item);
+        }
+        
     }
 }
 
@@ -185,14 +188,17 @@ void CMainDlg::OnBnClickedButtonSearchbook()
     for (auto& b : list) {
         CString item;
 
-        // %s로 포맷팅하고 GetCategoryName 함수 사용 (영어 문자열 출력)
-        item.Format(L"[ID:%d] %S / %S / %s",
-            b.getId(),
-            b.getName().c_str(),
-            b.getWriter().c_str(),
-            GetCategoryName(b.getCategory())
-        );
-        pList->AddString(item);
+        if (b.getIsLoan() == 0) {
+            // %s로 포맷팅하고 GetCategoryName 함수 사용 (영어 문자열 출력)
+            item.Format(L"[ID:%d] %S / %S / %s",
+                b.getId(),
+                b.getName().c_str(),
+                b.getWriter().c_str(),
+                GetCategoryName(b.getCategory())
+            );
+            pList->AddString(item);
+        }
+        
     }
 
     // 결과가 없을 때만 사용자에게 알림
@@ -205,6 +211,22 @@ void CMainDlg::OnBnClickedButtonSearchbook()
 void CMainDlg::OnBnClickedButtonDoloan() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+    if (m_pMainManager == nullptr) return;
+
+    // 책 선택 여부 확인
+    if (selectedBookId == -1) {
+        AfxMessageBox(L"대출할 책을 선택해주세요.");
+        return;
+    }
+
+    // MainManager에 대출 요청
+    m_pMainManager->doLoan(selectedBookId);
+
+    // 완료 알림
+    AfxMessageBox(L"도서 대출이 완료되었습니다!");
+
+    // 대출 후, 선택 초기화
+    selectedBookId = -1;
 }
 
 void CMainDlg::OnBnClickedButtonManage() 
@@ -228,6 +250,21 @@ void CMainDlg::OnBnClickedButtonManage()
 void CMainDlg::OnLbnSelchangeListBooks() 
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+    CListBox* pList = (CListBox*)GetDlgItem(IDC_LIST_BOOKS);
+    int sel = pList->GetCurSel();
+    if (sel == LB_ERR) return;
+
+    CString text;
+    pList->GetText(sel, text);
+
+    // 예: "[ID:3] 해리포터 / J.K.롤링 / Literature"
+    int id;
+    if (swscanf_s(text, L"[ID:%d]", &id) == 1) {
+        selectedBookId = id;
+    }
+    else {
+        selectedBookId = -1;
+    }
 }
 
 

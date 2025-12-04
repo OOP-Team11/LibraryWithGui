@@ -84,6 +84,20 @@ void MainManager::deleteBook(int bookid, int yourid) {
 void MainManager::setLoans() { 
 	
 }
-void MainManager::doLoan(int bookid, string bookname, string writer, string category) { 
-
+void MainManager::doLoan(int bookid) { 
+	bool bookState = books.checkBookState(bookid);
+	if (bookState == false) {
+		loans.loan(this->userId, bookid);
+		books.changeBookState(bookid);
+	}
+}
+vector<Loan> MainManager::getMyLoans() {
+	return loans.getAllLoansOfMe(this->userId);
+}
+void MainManager::extendLoan(int loanId) {
+	loans.extendLoan(loanId);
+}
+void MainManager::returnLoan(int loanId) {
+	int bookid = loans.returnLoan(loanId);
+	books.changeBookState(bookid);
 }
