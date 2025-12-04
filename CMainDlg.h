@@ -21,6 +21,7 @@ public:
 
 private:
 	MainManager* m_pMainManager; // 포인터로 보관
+	int selectedBookId;
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 

@@ -48,5 +48,9 @@ public:
 
 	// 대출 관련
 	void setLoans();
-	void doLoan(int bookid, string bookname, string writer, string category);
+	void doLoan(int bookid);
+	vector<Loan> getMyLoans();
+	void extendLoan(int loanId);
+	void returnLoan(int loanId);
+
 };
