@@ -85,6 +85,8 @@ void LoanManager::loan(int memberId, int bookId) {// 도서 대출 : 이 함수 안에서 
     loanCount++;
 
     addLoan(newLoan);
+
+    
 }
 
 void LoanManager::extendLoan(int loanId) {
@@ -93,8 +95,11 @@ void LoanManager::extendLoan(int loanId) {
 
     l->extendEndDate(); // Loan 객체 내부에서 7일 연장
 }
-void LoanManager::returnLoan(int loanId) {// 도서 반납
+int LoanManager::returnLoan(int loanId) {// 도서 반납
+    Loan* ptr = findLoan(loanId);
+    int bookid = ptr->getBookId();
     removeLoan(loanId);
+    return bookid;
 }
 
 vector<Loan> LoanManager::getAllLoansOfMe(int memberId) const {// 내 대출 목록 보기 : findLoanByMember 이용하기

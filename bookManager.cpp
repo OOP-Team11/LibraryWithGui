@@ -205,3 +205,21 @@ void BookManager::deleteBook(int bookId, int yourId) {
 
     cout << "도서(ID: " << bookId << ")가 삭제되었습니다." << endl;
 }
+
+void BookManager::changeBookState(int bookId) {
+    auto it = findBook(bookId);
+    if (it != books.end()) {
+        it->setIsLoan();   // ← 대출 상태 변경!
+        return;
+    }
+}
+
+bool BookManager::checkBookState(int bookId) {
+    auto it = findBook(bookId);
+    bool loanState;
+    if (it != books.end()) {
+        loanState = it->getIsLoan();
+        return loanState;
+    }
+    return false;
+}

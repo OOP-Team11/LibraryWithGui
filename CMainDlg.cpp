@@ -118,14 +118,17 @@ void CMainDlg::OnBnClickedButtonGetbooks()
     // 출력
     for (auto& b : list) {
         CString item;
-        // [수정] 카테고리:%d -> %s 로 변경하고 GetCategoryName 함수 사용
-        item.Format(L"[ID:%d] %S / %S / %s",
-            b.getId(),
-            b.getName().c_str(),
-            b.getWriter().c_str(),
-            GetCategoryName(b.getCategory()) // 숫자가 아닌 문자열 반환
-        );
-        pList->AddString(item);
+        if (b.getIsLoan() == 0) {
+            // [수정] 카테고리:%d -> %s 로 변경하고 GetCategoryName 함수 사용
+            item.Format(L"[ID:%d] %S / %S / %s",
+                b.getId(),
+                b.getName().c_str(),
+                b.getWriter().c_str(),
+                GetCategoryName(b.getCategory()) // 숫자가 아닌 문자열 반환
+            );
+            pList->AddString(item);
+        }
+        
     }
 }
 
@@ -185,14 +188,17 @@ void CMainDlg::OnBnClickedButtonSearchbook()
     for (auto& b : list) {
         CString item;
 
-        // %s로 포맷팅하고 GetCategoryName 함수 사용 (영어 문자열 출력)
-        item.Format(L"[ID:%d] %S / %S / %s",
-            b.getId(),
-            b.getName().c_str(),
-            b.getWriter().c_str(),
-            GetCategoryName(b.getCategory())
-        );
-        pList->AddString(item);
+        if (b.getIsLoan() == 0) {
+            // %s로 포맷팅하고 GetCategoryName 함수 사용 (영어 문자열 출력)
+            item.Format(L"[ID:%d] %S / %S / %s",
+                b.getId(),
+                b.getName().c_str(),
+                b.getWriter().c_str(),
+                GetCategoryName(b.getCategory())
+            );
+            pList->AddString(item);
+        }
+        
     }
 
     // 결과가 없을 때만 사용자에게 알림

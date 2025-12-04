@@ -28,7 +28,7 @@ public:
 	// 외부 기능 functions
 	void loan(int memberId, int bookId); // 도서 대출 : 이 함수 안에서 Loan() 생성자 호출 -> 이후 addLoan에 인수로 넣기. 대출 기간은 7일.
 	void extendLoan(int loanId); // 대출 연장
-	void returnLoan(int loanId); // 도서 반납
+	int returnLoan(int loanId); // 도서 반납
 	vector<Loan> getAllLoansOfMe(int memberId) const; // 내 대출 목록 보기 : findLoanByMember 이용하기
 	
 	// 자동 반납 (나중에 서영이 할 예정)

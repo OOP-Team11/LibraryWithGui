@@ -29,5 +29,8 @@ public:
 	vector<Book> getAllBooks() const; // 도서 조회(전체)
 	vector<Book> searchBook(string name, string writer, BookCategory bookcategory) const; // 도서 검색 (책 이름, 작가 이름), findBook 이용하기
 	void deleteBook(int bookId, int yourId); // 도서 삭제 + yourId는 명령 실행하는 사용자 권한 체크용
+	void changeBookState(int bookId);
+
+	bool checkBookState(int bookId);
 
 };
